@@ -28,15 +28,13 @@ pie title CPU Usage Under Load
 
 ### Memory Usage Comparison (MB)
 ```mermaid
-bar chart
-    title Memory Usage (MB)
-    x-axis Application
-    y-axis Memory (MB)
+pie title Memory Usage (MB)
     "Nginx" : 145
     "PostgreSQL" : 450
     "Stress-ng" : 50
     "Idle" : 120
 ```
+
 
 ## 3. Network Performance Analysis
 
