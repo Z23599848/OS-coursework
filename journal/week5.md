@@ -66,7 +66,7 @@ Status for the jail: sshd
 
 ## 4. Security Baseline Verification
 
-I ran the [`security-baseline.sh`[(https://raw.githubusercontent.com/Z23599848/OS-coursework/refs/heads/main/scripts/security-baseline.sh) script to verify all controls.
+I ran the [`security-baseline.sh`](https://raw.githubusercontent.com/Z23599848/OS-coursework/refs/heads/main/scripts/security-baseline.sh) script to verify all controls.
 ```bash
 admin@server-vm:~$ sudo ./security-baseline.sh
 Starting Security Baseline Verification...
