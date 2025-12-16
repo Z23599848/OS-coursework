@@ -45,3 +45,6 @@ I will use my `monitor-server.sh` script to capture snapshots of resource usage 
 - **Nginx:** Run `ab` (Apache Bench) from the workstation to generate traffic.
 - **PostgreSQL:** Run `pgbench` to simulate database transactions.
 - **Stress-ng:** Run specific CPU stressors (e.g., `stress-ng --cpu 2 --timeout 60s`).
+
+[← Week 2](week2.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 4 →](week4.md)
+
