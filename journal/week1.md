@@ -87,3 +87,5 @@ Description:    Ubuntu 22.04.3 LTS
 Release:        22.04
 Codename:       jammy
 ```
+
+[Home](index.md) | [Week 2 →](./journal/week2.md)
