@@ -53,7 +53,7 @@ The VirtualBox "Host-Only Adapter" will be used to create an isolated private ne
 
 ### `uname -a`
 ```bash
-Linux server-vm 5.15.0-91-generic #101-Ubuntu SMP Tue Nov 14 13:30:08 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+Linux server-vm 5.15.0-91-generic #101-Ubuntu SMP Tue Nov 14 13:30:08 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
 ### `free -h`
