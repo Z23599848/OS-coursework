@@ -74,7 +74,7 @@ Term
 
 [OpenAI](https://openai.com)
 
-![Placeholder Image](https://via.placeholder.com/600x200?text=Markdown+Image)
+![Placeholder Image]([https://via.placeholder.com/600x200?text=Markdown+Image](https://media.wired.com/photos/66425c483aeee12d6ca99835/master/pass/New-ChatGPT-Tier-Gear-GettyImages-2151457871.jpg))
 
 ---
 
