@@ -61,3 +61,6 @@ I adjusted `worker_processes` in `nginx.conf` from `auto` to `2` (matching the n
 
 **Result:**
 Nginx requests per second (RPS) increased from **850** to **920** during the benchmark.
+
+[← Week 5](week5.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 7 →](week7.md)
+
