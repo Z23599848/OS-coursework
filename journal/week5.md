@@ -79,4 +79,8 @@ Checking Fail2Ban Status... [PASS]
 ----------------------------------------
 Verification Complete.
 ```
+## 4. Security Baseline Verification
+A remote monitoring script [`monitor-server.sh`](https://raw.githubusercontent.com/Z23599848/OS-coursework/refs/heads/main/scripts/monitor-server.sh) that runs on your workstation,
+connects via SSH, and collects performance metrics from the server.
+
 [← Week 4](week4.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 6 →](week6.md)
