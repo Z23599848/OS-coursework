@@ -9,7 +9,7 @@ This journal documents the 7-week journey of configuring, securing, and evaluati
 
 ## Table of Contents
 
-- [Week 1: System Planning and Distribution Selection](./week1.md)
+- [Week 1: System Planning and Distribution Selection](./journal/week1.md)
 - [Week 2: Security Planning and Testing Methodology](./week2.md)
 - [Week 3: Application Selection for Performance Testing](./week3.md)
 - [Week 4: Initial System Configuration & Security Implementation](./week4.md)
