@@ -25,3 +25,4 @@ This journal documents the 7-week journey of configuring, securing, and evaluati
 ---
 *This journal is submitted in partial fulfillment of the requirements for the CMPN202 Operating Systems module.*
 
+“Artificial intelligence tools (Antygravity, Google AI) were used to assist in this work.”
