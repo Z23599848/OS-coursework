@@ -1,117 +1,127 @@
-Ah! I see exactly what you mean. In **Markdown**, formulas need to be written in **LaTeX-style math syntax** using dollar signs `$...$` for inline math or `$$...$$` for display math. Some Markdown renderers (like GitHub) don’t support all LaTeX, but many do (like Obsidian, Jupyter, or Typora).
+# Upmath: Math Online Editor
+_Create web articles and&nbsp;blog posts with&nbsp;equations and&nbsp;diagrams_
 
-Here’s your formulas rewritten so they **render correctly in Markdown with math**:
+Upmath significantly simplifies this task by using Markdown and LaTeX. It converts Markdown syntax extended with LaTeX equations support into HTML code you can publish anywhere on the web.
 
----
+![Paper written in LaTeX](/i/latex.jpg)
 
-### **1. Algebra**
+## Markdown
 
-* **Quadratic formula:**
+Definition from [Wikipedia](https://en.wikipedia.org/wiki/Markdown):
 
-```markdown
-$$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
-```
+> Markdown is a lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML and many other formats using a tool by the same name. Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor.
 
-* **Difference of squares:**
+The main idea of Markdown is to use a simple plain text markup. It's ~~hard~~ easy to __make__ **bold** _or_ *italic* text. Simple equations can be formatted with subscripts and superscripts: *E*~0~=*mc*^2^. I have added the LaTeX support: $$E_0=mc^2$$.
 
-```markdown
-$$a^2 - b^2 = (a-b)(a+b)$$
-```
+Among Markdown features are:
 
-* **Sum of cubes:**
+* images (see above);
+* links: [service main page](/ "link title");
+* code: `untouched equation source is *E*~0~=*mc*^2^`;
+* unordered lists--when a line starts with `+`, `-`, or `*`;
+  1. sub-lists
+  1. and ordered lists too;
+* direct use <nobr>of HTML</nobr>&ndash;for <span style="color: red">anything else</span>. 
 
-```markdown
-$$a^3 + b^3 = (a+b)(a^2 - ab + b^2)$$
-```
+In addition, Upmath supports typographic replacements: (c) (r) (tm) +- !!!!!! ???? ,,  -- ---
 
-* **Difference of cubes:**
+## LaTeX
 
-```markdown
-$$a^3 - b^3 = (a-b)(a^2 + ab + b^2)$$
-```
+Upmath converts LaTeX equations in double-dollars `$$`: $$ax^2+bx+c=0$$. All equations are rendered as block equations. If you need inline ones, you can add the prefix `\inline`: $$\inline p={1\over q}$$. Place big equations on separate lines:
 
----
+$$x_{1,2} = {-b\pm\sqrt{b^2 - 4ac} \over 2a}.$$
 
-### **2. Geometry**
+In this case the LaTeX syntax will be highlighted in the source code. You can even add equation numbers (unfortunately there is no automatic numbering and refs support):
 
-* **Area of a triangle:**
+$$|\vec{A}|=\sqrt{A_x^2 + A_y^2 + A_z^2}.$$(1)
 
-```markdown
-$$A = \frac{1}{2} \times \text{base} \times \text{height}$$
-```
+It is possible to write Cyrillic symbols in `\text` command: $$Q_\text{плавления}>0$$.
 
-* **Area of a circle:**
+One can use matrices:
 
-```markdown
-$$A = \pi r^2$$
-```
+$$T^{\mu\nu}=\begin{pmatrix}
+\varepsilon&0&0&0\\
+0&\varepsilon/3&0&0\\
+0&0&\varepsilon/3&0\\
+0&0&0&\varepsilon/3
+\end{pmatrix},$$
 
-* **Circumference of a circle:**
+integrals:
 
-```markdown
-$$C = 2 \pi r$$
-```
+$$P_\omega={n_\omega\over 2}\hbar\omega\,{1+R\over 1-v^2}\int\limits_{-1}^{1}dx\,(x-v)|x-v|,$$
 
-* **Pythagoras theorem:**
+cool tikz-pictures:
 
-```markdown
-$$a^2 + b^2 = c^2$$
-```
+$$\usetikzlibrary{decorations.pathmorphing}
+\begin{tikzpicture}[line width=0.2mm,scale=1.0545]\small
+\tikzset{>=stealth}
+\tikzset{snake it/.style={->,semithick,
+decoration={snake,amplitude=.3mm,segment length=2.5mm,post length=0.9mm},decorate}}
+\def\h{3}
+\def\d{0.2}
+\def\ww{1.4}
+\def\w{1+\ww}
+\def\p{1.5}
+\def\r{0.7}
+\coordinate[label=below:$A_1$] (A1) at (\ww,\p);
+\coordinate[label=above:$B_1$] (B1) at (\ww,\p+\h);
+\coordinate[label=below:$A_2$] (A2) at (\w,\p);
+\coordinate[label=above:$B_2$] (B2) at (\w,\p+\h);
+\coordinate[label=left:$C$] (C1) at (0,0);
+\coordinate[label=left:$D$] (D) at (0,\h);
+\draw[fill=blue!14](A2)--(B2)-- ++(\d,0)-- ++(0,-\h)--cycle;
+\draw[gray,thin](C1)-- +(\w+\d,0);
+\draw[dashed,gray,fill=blue!5](A1)-- (B1)-- ++(\d,0)-- ++(0,-\h)-- cycle;
+\draw[dashed,line width=0.14mm](A1)--(C1)--(D)--(B1);
+\draw[snake it](C1)--(A2) node[pos=0.6,below] {$c\Delta t$};
+\draw[->,semithick](\ww,\p+0.44*\h)-- +(\w-\ww,0) node[pos=0.6,above] {$v\Delta t$};
+\draw[snake it](D)--(B2);
+\draw[thin](\r,0) arc (0:atan2(\p,\w):\r) node[midway,right,yshift=0.06cm] {$\theta$};
+\draw[opacity=0](-0.40,-0.14)-- ++(0,5.06);
+\end{tikzpicture}$$
 
----
+plots:
 
-### **3. Trigonometry**
+$$\begin{tikzpicture}[scale=1.0544]\small
+\begin{axis}[axis line style=gray,
+	samples=120,
+	width=9.0cm,height=6.4cm,
+	xmin=-1.5, xmax=1.5,
+	ymin=0, ymax=1.8,
+	restrict y to domain=-0.2:2,
+	ytick={1},
+	xtick={-1,1},
+	axis equal,
+	axis x line=center,
+	axis y line=center,
+	xlabel=$x$,ylabel=$y$]
+\addplot[red,domain=-2:1,semithick]{exp(x)};
+\addplot[black]{x+1};
+\addplot[] coordinates {(1,1.5)} node{$y=x+1$};
+\addplot[red] coordinates {(-1,0.6)} node{$y=e^x$};
+\path (axis cs:0,0) node [anchor=north west,yshift=-0.07cm] {0};
+\end{axis}
+\end{tikzpicture}$$
 
-* **Sine, cosine, tangent:**
+and [the rest of LaTeX features](https://en.wikibooks.org/wiki/LaTeX/Mathematics).
 
-```markdown
-$$\sin \theta = \frac{\text{opposite}}{\text{hypotenuse}}, \quad 
-\cos \theta = \frac{\text{adjacent}}{\text{hypotenuse}}, \quad
-\tan \theta = \frac{\text{opposite}}{\text{adjacent}}$$
-```
+## About Upmath
 
-* **Pythagorean identity:**
+* Upmath works in browsers, except equations rendered [on the server](//i.upmath.me/). Markdown text is not sent anywhere, and attackers cannot intercept it.
+* Upmath stores your text in the browser to prevent the loss of your work in case of software or hardware failures.
+* You can create and switch between multiple documents via the "☰ &rarr; New" and "☰ &rarr; Open" menu.
+* Upmath occasionally saves intermediate versions of your texts. They can be restored via the "☰ &rarr; Restore from history" menu.
+* You can copy or download the text ("☰ &rarr; Download source") and the converted code ("⇓" button).
+* To print or convert your documents to PDF, use the standard browser print dialog or the "☰ &rarr; Print or save PDF" menu.
 
-```markdown
-$$\sin^2 \theta + \cos^2 \theta = 1$$
-```
+I have designed and developed this lightweight editor and the service for converting LaTeX equations into SVG pictures to make publishing mathematical  texts on the web easy. I consider client-side rendering, the rival technique implemented in [MathJax](https://www.mathjax.org/), to be too limited and resource-consuming, especially on mobile devices.
 
----
+The source code is [published on Github](https://github.com/parpalak/upmath.me) under MIT license.
 
-### **4. Calculus**
+***
 
-* **Derivative of power function:**
+Now you can erase this instruction and start writing your own scientific post. If you wish to see the instruction again, use the "☰ &rarr; Open instruction" menu.
 
-```markdown
-$$\frac{d}{dx}[x^n] = nx^{n-1}$$
-```
+Have a nice day :)
 
-* **Integral of power function:**
-
-```markdown
-$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$
-```
-
----
-
-### **5. Probability & Statistics**
-
-* **Probability of an event:**
-
-```markdown
-$$P(E) = \frac{\text{Number of favorable outcomes}}{\text{Total outcomes}}$$
-```
-
-* **Mean (average):**
-
-```markdown
-$$\text{Mean} = \frac{\text{Sum of all values}}{\text{Number of values}}$$
-```
-
----
-
-✅ Now these will **render as proper formulas** in any Markdown viewer that supports LaTeX math.
-
-If you want, I can make a **full Markdown cheat sheet with 50+ formulas** ready to copy-paste and fully render!
-
-Do you want me to make that?
+[Roman Parpalak](https://parpalak.com/), web developer and UX expert.
