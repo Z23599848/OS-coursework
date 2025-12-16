@@ -88,4 +88,4 @@ Release:        22.04
 Codename:       jammy
 ```
 
-[Home](index.md) | [Week 2 →](week2.md)
+[Home](./index.md) | [Week 2 →](week2.md)
