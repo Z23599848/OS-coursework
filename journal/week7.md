@@ -62,3 +62,6 @@ Using **Unattended Upgrades** ensures security but carries the risk of an update
 
 ## 4. Final Conclusion
 The server infrastructure is now robust, secure, and optimized. The dual-system architecture successfully demonstrated the importance of remote administration skills. The security hardening measures (UFW, Fail2Ban, AppArmor) provide a strong defense-in-depth posture, while the performance tuning ensured efficient resource utilization.
+
+[← Week 6](week6.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md)
+
