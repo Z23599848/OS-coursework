@@ -88,4 +88,4 @@ Release:        22.04
 Codename:       jammy
 ```
 
-[Home](./main/index.md) | [Week 2 →](week2.md)
+[Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 2 →](week2.md)
