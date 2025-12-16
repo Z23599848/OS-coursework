@@ -45,3 +45,5 @@ I have identified three key threats relevant to this server infrastructure:
 - **Description:** An attacker exploits a known vulnerability in an outdated service (e.g., old Nginx version).
 - **Impact:** Service denial, remote code execution.
 - **Mitigation:** Enable unattended upgrades to ensure software is always patched.
+
+[← Week 1](week1.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 3 →](week3.md)
