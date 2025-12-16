@@ -1,89 +1,36 @@
 <!-- ========================================================= -->
-<!--            🌟 SAMPLE MARKDOWN SHOWCASE PAGE 🌟             -->
+<!--        🖥️ COMPUTER CONTEXT / SYSTEM DOCS TEMPLATE          -->
+<!--        Focus: Linux Bash commands + results output         -->
 <!-- ========================================================= -->
 
-# 📘 Markdown Mega Demo
+# 🐧 Linux System Documentation (Markdown Template)
 
-> *A single page demonstrating **as much Markdown syntax as possible**—perfect as a reference or starter template.*
-
----
-
-## 📚 Table of Contents
-- [Headings](#headings)
-- [Text Formatting](#text-formatting)
-- [Lists](#lists)
-- [Links & Images](#links--images)
-- [Code Blocks](#code-blocks)
-- [Tables](#tables)
-- [Graphs & Diagrams](#graphs--diagrams)
-- [Math](#math)
-- [Quotes & Callouts](#quotes--callouts)
-- [Tasks](#tasks)
-- [Footnotes](#footnotes)
-- [Collapsible Sections](#collapsible-sections)
+> **Purpose:**  
+> This document demonstrates how to write **computer-context documentation** using Markdown, with a strong focus on **Bash commands**, **terminal output**, and **system inspection**.
 
 ---
 
-## 🔤 Headings
-
-# H1 Heading  
-## H2 Heading  
-### H3 Heading  
-#### H4 Heading  
-##### H5 Heading  
-###### H6 Heading  
-
----
-
-## ✨ Text Formatting
-
-- **Bold**
-- *Italic*
-- ***Bold + Italic***
-- ~~Strikethrough~~
-- `Inline code`
-- <kbd>Ctrl</kbd> + <kbd>C</kbd>
-- <mark>Highlighted text</mark>
-- <sub>Subscript</sub> and <sup>Superscript</sup>
+## 📑 Table of Contents
+- [Environment Overview](#environment-overview)
+- [System Information](#system-information)
+- [Filesystem](#filesystem)
+- [Networking](#networking)
+- [Processes & Resources](#processes--resources)
+- [Package Management](#package-management)
+- [Logs & Debugging](#logs--debugging)
+- [Automation Script Example](#automation-script-example)
+- [Troubleshooting Notes](#troubleshooting-notes)
 
 ---
 
-## 📋 Lists
+## 🧾 Environment Overview
 
-### Unordered
-- Apples
-  - Green
-  - Red
-- Oranges
-- Bananas
+**Host:** `server-01`  
+**OS:** Ubuntu 22.04 LTS  
+**Kernel:** `5.15.x`  
+**Shell:** `bash`
 
-### Ordered
-1. First
-2. Second
-   1. Nested
-   2. Nested
-3. Third
-
-### Definition List
-Term  
-: Definition of the term
-
----
-
-## 🔗 Links & Images
-
-[OpenAI](https://openai.com)
-
-![Placeholder Image]([https://via.placeholder.com/600x200?text=Markdown+Image](https://media.wired.com/photos/66425c483aeee12d6ca99835/master/pass/New-ChatGPT-Tier-Gear-GettyImages-2151457871.jpg))
-
----
-
-## 💻 Code Blocks
-
-### JSON
-```json
-{
-  "name": "Markdown Demo",
-  "version": "1.0.0",
-  "features": ["tables", "diagrams", "code"]
-}
+```text
+Documentation style:
+- 🟦 Blue box → Command
+- ⬛ Black box → Command output
