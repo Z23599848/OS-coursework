@@ -5,17 +5,21 @@
 The following diagram illustrates the planned dual-system architecture, consisting of a headless server and a remote workstation.
 
 ```mermaid
-graph LR
-    subgraph "VirtualBox Host-Only Network (192.168.56.0/24)"
-        Server[("Ubuntu Server 22.04 LTS\n(Headless)\nIP: 192.168.56.10")]
-        Workstation[("Ubuntu Desktop 22.04 LTS\n(Admin Workstation)\nIP: 192.168.56.20")]
-    end
-    
-    Workstation -- "SSH (Port 22)" --> Server
-    Workstation -- "HTTP (Port 80)" --> Server
-    
-    style Server fill:#f9f,stroke:#333,stroke-width:2px
-    style Workstation fill:#bbf,stroke:#333,stroke-width:2px
+flowchart LR
+ subgraph subGraph0["VirtualBox Host-Only Network (192.168.56.0/24)"]
+        Server["Ubuntu Server 22.04 LTS\n(Headless)\nIP: 192.168.56.10"]
+        Workstation["Ubuntu Desktop 22.04 LTS\n(Admin Workstation)\nIP: 192.168.56.20"]
+  end
+    Workstation -- SSH (Port 22) --> Server
+    Workstation -- HTTP (Port 80) --> Server
+
+    Server@{ shape: rounded}
+    Workstation@{ shape: rect}
+    style Server fill:#000000,color:#00C853,stroke:#00C853
+    style Workstation stroke-width:4px,stroke-dasharray: 0,stroke:#00C853,color:#00C853,fill:#000000
+    style subGraph0 fill:#000000,color:#00C853
+    linkStyle 0 stroke:#00C853,fill:none
+    linkStyle 1 stroke:#00C853,fill:none
 ```
 
 ## 2. Distribution Selection Justification
