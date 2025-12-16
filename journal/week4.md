@@ -65,3 +65,4 @@ I executed the following command from my workstation to verify the server's upti
 $ ssh admin@192.168.56.10 "uptime"
  14:30:15 up 2 days,  4:12,  1 user,  load average: 0.00, 0.01, 0.00
 ```
+[← Week 3](week3.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 5 →](week5.md)
