@@ -87,6 +87,6 @@ Description:    Ubuntu 22.04.3 LTS
 Release:        22.04
 Codename:       jammy
 ```
-![Photo](./images/1.jpg)
+![Photo](https://github.com/Z23599848/OS-coursework/blob/main/images/1.jpg)
 
 [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 2 →](week2.md)
