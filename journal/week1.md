@@ -7,7 +7,7 @@ The following diagram illustrates the planned dual-system architecture, consisti
 ```mermaid
 flowchart LR
  subgraph subGraph0["VirtualBox Host-Only Network (192.168.56.0/24)"]
-        Server["Ubuntu Server 22.04 LTS\n(Headless)\nIP: 192.168.56.10"]
+        Server["Ubuntu Server 22.04 LTS\n(Headless)\nIP: 192.168.56.101"]
         Workstation["Ubuntu Desktop 22.04 LTS\n(Admin Workstation)\nIP: 192.168.56.20"]
   end
     Workstation -- SSH (Port 22) --> Server
@@ -45,7 +45,7 @@ I have chosen **Option A: Linux Desktop VM**.
 
 The VirtualBox "Host-Only Adapter" will be used to create an isolated private network.
 - **Network CIDR:** `192.168.56.0/24`
-- **Server IP:** `192.168.56.10`
+- **Server IP:** `192.168.56.101`
 - **Workstation IP:** `192.168.56.20`
 - **Gateway:** `192.168.56.1`
 
