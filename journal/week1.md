@@ -5,21 +5,49 @@
 The following diagram illustrates the planned dual-system architecture, consisting of a headless server and a remote workstation.
 
 ```mermaid
-flowchart LR
- subgraph subGraph0["VirtualBox Host-Only Network (192.168.56.0/24)"]
-        Server["Ubuntu Server 22.04 LTS\n(Headless)\nIP: 192.168.56.101"]
-        Workstation["Ubuntu Desktop 22.04 LTS\n(Admin Workstation)\nIP: 192.168.56.20"]
-  end
-    Workstation -- SSH (Port 22) --> Server
-    Workstation -- HTTP (Port 80) --> Server
+graph TD
+    subgraph PhysicalHost ["&nbsp;&nbsp; PHYSICAL HOST MACHINE &nbsp;&nbsp;"]
+        direction TB
+        
+        subgraph VirtualBox ["ORACLE VIRTUALBOX"]
+            direction TB
 
-    Server@{ shape: rounded}
-    Workstation@{ shape: rect}
-    style Server fill:#000000,color:#00C853,stroke:#00C853
-    style Workstation stroke-width:4px,stroke-dasharray: 0,stroke:#00C853,color:#00C853,fill:#000000
-    style subGraph0 fill:#000000,color:#00C853
-    linkStyle 0 stroke:#00C853,fill:none
-    linkStyle 1 stroke:#00C853,fill:none
+            %% Client VM
+            subgraph VM_Client ["Workstation VM (Client)"]
+                direction LR
+                Tools["<b>Tools</b><br/>SSH, Htop, Nmap"]
+                OS_Client["<b>OS</b><br/>Ubuntu Desktop 24.04"]
+            end
+
+            %% Network Layer
+            VSwitch{{"Virtual Switch<br/>192.168.56.6/24"}}
+
+            %% Server VM
+            subgraph VM_Server ["Server VM (Target)"]
+                direction LR
+                OS_Server["<b>OS</b><br/>Ubuntu Server (Headless)"]
+                Services["<b>Services</b><br/>SSHD :22, UFW, AppArmor"]
+            end
+
+            %% Traffic Flow
+            VM_Client <==>|"Host-Only Traffic"| VSwitch
+            VSwitch <==> VM_Server
+        end
+    end
+
+    %% Style Definitions
+    style PhysicalHost fill:#f8f9fa,stroke:#343a40,stroke-width:2px,color:#343a40
+    style VirtualBox fill:#e9ecef,stroke:#495057,stroke-width:2px,stroke-dasharray: 5 5
+    
+    style VM_Client fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style VM_Server fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    
+    style VSwitch fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    
+    style Tools fill:#fff,stroke:#1565c0
+    style OS_Client fill:#fff,stroke:#1565c0
+    style OS_Server fill:#fff,stroke:#c2185b
+    style Services fill:#fff,stroke:#c2185b
 ```
 
 ## 2. Distribution Selection Justification
