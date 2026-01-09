@@ -79,7 +79,7 @@ The VirtualBox "Host-Only Adapter" will be used to create an isolated private ne
 
 ## 5. System Specifications (Simulated Output)
 
-### uname -a;free -;df -hlsb_release -a;ip addr`
+### uname -a;free -h;df -h;lsb_release -a;ip addr`
 
 ![Photo](https://github.com/Z23599848/OS-coursework/blob/main/images/1.jpg)
 
