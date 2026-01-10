@@ -2,11 +2,11 @@
 
 
 
-This week establishes the foundational system architecture, addressing the following learning outcomes:
+This week addresses the following learning outcomes:
 
-* **1**: Initial security considerations through service minimisation, headless server deployment, and restricted SSH-based access.
-* **2**: Baseline use of command-line tools for system verification and inspection (`uname`, `free`, `df`, `ip`).
-* **3**: Evaluation of operating system design trade-offs through structured Linux distribution comparison and justification.
+- **LO3**: Initial security considerations through service minimisation and headless deployment.
+- **LO4**: Use of command-line tools for baseline system verification.
+- **LO5**: Evaluation of operating system design trade-offs.
 
 ---
 
