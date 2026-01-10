@@ -86,10 +86,10 @@ Using a dedicated Linux workstation ensures environmental consistency with the s
 **single-command (one-liner) solutions** for **each VM**, using PowerShell.
 Each command: **creates the VM + disk + network + attaches the ISO**.
 
----
+
 The following commands document host-side VM provisioning for reproducibility; they are not part of the assessed server configuration.
 Run in Powershell (run as administrator)
----
+
 
 ###  Install **VirtualBox 7.0.14 (stable)**
 
