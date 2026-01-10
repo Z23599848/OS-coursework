@@ -45,8 +45,8 @@ This section defines the target “golden configuration” for the server. Compl
   passwd -l root;
   ```
 
-* **Screenshot placeholder (root account locked):**
-  `https://github.com/Z23599848/OS-coursework/blob/main/images/week2-1.png`
+* **root account locked):**
+![root account locked](https://github.com/Z23599848/OS-coursework/blob/main/images/week2-1.png)
 
 * Create a dedicated administrative user (`adminuser`) with sudo privileges.
 
