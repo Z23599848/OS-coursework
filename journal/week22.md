@@ -147,12 +147,3 @@ Developing the threat model clarified the importance of layered defenses. Relyin
 
 [← Previous: Week 1](./week1.md) | [Return to Home](./index.md) | [Next: Week 3 →](./week3.md)
 
-
-
----
-
-If you want, I can next:
-
-* Normalize command formatting across **all weeks**
-* Convert this into a **formal security design document**
-* Produce an **audit-ready checklist** derived from this content
