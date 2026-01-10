@@ -83,11 +83,8 @@ The selected server operating system is **Ubuntu Server 22.04 LTS (Jammy Jellyfi
 
 Using a dedicated Linux workstation ensures environmental consistency with the server, isolates coursework tooling from the host system, and enables realistic client–server interaction within VirtualBox.
 
-**single-command (one-liner) solutions** for **each VM**, using PowerShell.
-Each command: **creates the VM + disk + network + attaches the ISO**.
 
-
-The following commands document host-side VM provisioning for reproducibility; they are not part of the assessed server configuration.
+* The following commands document host-side VM provisioning for reproducibility; they are not part of the assessed server configuration.
 Run in Powershell (run as administrator)
 
 
