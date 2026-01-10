@@ -141,7 +141,7 @@ Expected: `7.0.14r*****`
 
 ## 4. Network Configuration
 
-A VirtualBox **Host-Only Adapter** is used to create a fully isolated private network. This prevents unintended external exposure while allowing controlled inter-VM communication.
+A VirtualBox Host-Only Adapter is used to create a logically isolated private network for controlled inter-VM communication.
 
 * **Server IP:** `192.168.56.101`
 * **Workstation IP:** `192.168.56.102`
