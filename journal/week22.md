@@ -101,9 +101,7 @@ The following command sequence confirms the firewall is not active in the defaul
 ```
 sudo ufw status verbose;
 ```
-
-* **Screenshot placeholder (UFW inactive):**
-  `https://placeholder.example/screenshots/ufw-status-inactive.png`
+![UFW inactive](https://github.com/Z23599848/OS-coursework/blob/main/images/week2-2.png)
 
 The output confirms that UFW is disabled, exposing all listening services on the network.
 
@@ -117,8 +115,7 @@ To enumerate open ports and listening interfaces:
 ss -tuln;
 ```
 
-* **Screenshot placeholder (open SSH port):**
-  `https://placeholder.example/screenshots/ss-port-22-listen.png`
+![open SSH port](https://github.com/Z23599848/OS-coursework/blob/main/images/week2-3.png)
 
 The results indicate SSH (Port 22) is bound to all interfaces (`0.0.0.0`), making it the primary external attack surface.
 
@@ -132,8 +129,7 @@ Default SSH settings were reviewed using:
 grep -nE "PermitRootLogin|PasswordAuthentication" /etc/ssh/sshd_config;
 ```
 
-* **Screenshot placeholder (default sshd_config):**
-  `https://placeholder.example/screenshots/sshd-config-default.png`
+![default sshd_config](https://github.com/Z23599848/OS-coursework/blob/main/images/week2-4.png)
 
 The configuration confirms that both root login and password authentication are enabled by default, presenting a high-risk condition.
 
