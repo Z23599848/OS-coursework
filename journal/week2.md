@@ -1,49 +1,83 @@
-# Week 2: Security Planning and Testing Methodology
+# Week 2: Remote Administration and Secure Access
 
-## 1. Performance Testing Plan
+## Learning Outcomes Addressed
 
-### Methodology
-I will use a "Black Box" monitoring approach where the monitoring script runs on the workstation and queries the server via SSH. This minimizes the observer effect on the server itself.
+This week focuses on the introduction of secure remote administration and command-line system management, addressing the following learning outcomes:
 
-### Metrics to Monitor
-- **CPU:** Usage percentage, load average.
-- **Memory:** Used vs. Available RAM, Swap usage.
-- **Disk:** I/O wait time, throughput.
-- **Network:** Bandwidth usage, latency (ping RTT).
+* **LO3**: Apply appropriate security mechanisms for remote access and authentication.
+* **LO4**: Demonstrate proficiency with command-line tools for system administration.
+* **LO5**: Evaluate security and usability trade-offs in remote system access.
 
-### Tools
-- `top`, `free`, `vmstat`, `iostat` (via SSH).
-- `sysbench` for generating synthetic loads.
+---
 
-## 2. Security Configuration Checklist
+## 1. Enabling and Verifying SSH Service
 
-| Category | Control | Status | Justification |
-| :--- | :--- | :--- | :--- |
-| **SSH** | Disable Root Login | Pending | Prevents direct root access brute-forcing. |
-| **SSH** | Disable Password Auth | Pending | Enforces key-based auth, mitigating dictionary attacks. |
-| **Firewall** | Enable UFW | Pending | Blocks unauthorized network traffic. |
-| **Firewall** | Allow SSH (Port 22) | Pending | Essential for remote administration. |
-| **Users** | Create Admin User | Pending | Principle of least privilege. |
-| **Updates** | Unattended Upgrades | Pending | Ensures critical security patches are applied auto. |
-| **IDS** | Fail2Ban | Pending | Bans IPs after repeated failed login attempts. |
+The Ubuntu Server system was installed with the OpenSSH service enabled. The status of the SSH daemon was verified using the systemd service manager to confirm that remote access services were operational.
 
-## 3. Threat Model
+```bash
+systemctl status ssh
+```
 
-I have identified three key threats relevant to this server infrastructure:
+![SSH service status](https://github.com/Z23599848/OS-coursework/blob/main/images/1_week2.png)
 
-### Threat 1: SSH Brute Force Attack
-- **Description:** An attacker attempts to guess the password for the `root` or `admin` user.
-- **Impact:** Full system compromise, data theft, botnet recruitment.
-- **Mitigation:** Disable password authentication, enforce SSH keys, install Fail2Ban.
+This confirms that the SSH service is running and listening for incoming connections.
 
-### Threat 2: Privilege Escalation
-- **Description:** A compromised low-privileged user attempts to gain root access.
-- **Impact:** Full control over the server.
-- **Mitigation:** Restrict `sudo` access to specific users, keep kernel updated to patch local exploits.
+---
 
-### Threat 3: Unpatched Service Vulnerability
-- **Description:** An attacker exploits a known vulnerability in an outdated service (e.g., old Nginx version).
-- **Impact:** Service denial, remote code execution.
-- **Mitigation:** Enable unattended upgrades to ensure software is always patched.
+## 2. Remote Access from Workstation
 
-[← Week 1](week1.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 3 →](week3.md)
+All administration of the server is performed remotely from the dedicated Linux workstation using SSH. This enforces command-line proficiency and reflects real-world system administration practices.
+
+The workstation connects to the server over the isolated host-only network using the server’s private IP address.
+
+```bash
+ssh user@192.168.56.101
+```
+
+![SSH login from workstation](https://github.com/Z23599848/OS-coursework/blob/main/images/2_week2.png)
+
+Upon successful authentication, the server hostname is displayed, confirming remote access to the correct system.
+
+---
+
+## 3. User Identity and Privilege Verification
+
+To ensure adherence to the principle of least privilege, administrative tasks are performed using a non-root user account with controlled escalation via `sudo`.
+
+The following commands were executed to verify user identity, group membership, and sudo permissions:
+
+```bash
+whoami
+id
+groups
+sudo -l
+```
+
+![User identity and sudo privileges](https://github.com/Z23599848/OS-coursework/blob/main/images/3_week2.png)
+
+This confirms that the user operates without direct root login while retaining administrative capability through privilege escalation.
+
+---
+
+## 4. Network Context and SSH Exposure
+
+The SSH service is accessible only within the private host-only network. Network configuration and active listening ports were verified to ensure SSH is the sole exposed remote access service.
+
+```bash
+ip addr
+ss -tulpn | grep ssh
+```
+
+![SSH listening ports](https://github.com/Z23599848/OS-coursework/blob/main/images/4_week2.png)
+
+This configuration limits the attack surface and supports secure internal administration.
+
+---
+
+## Week 2 Reflection
+
+This week established secure remote administration as the primary management approach for the server. By enforcing SSH-based access and non-root user privileges, the system balances usability with security. These foundations enable further hardening and security enhancements in subsequent weeks.
+
+---
+
+[Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 3 →](week3.md)
