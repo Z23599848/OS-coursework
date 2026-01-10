@@ -112,7 +112,7 @@ The output confirms that UFW is disabled, exposing all listening services on the
 To enumerate open ports and listening interfaces:
 
 ```
-ss -tuln;
+sudo ss -tulpn | grep ssh
 ```
 
 ![open SSH port](https://github.com/Z23599848/OS-coursework/blob/main/images/week2-3.png)
