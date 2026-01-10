@@ -47,10 +47,7 @@ To ensure adherence to the principle of least privilege, administrative tasks ar
 The following commands were executed to verify user identity, group membership, and sudo permissions:
 
 ```bash
-whoami
-id
-groups
-sudo -l
+whoami; id; groups; sudo -l
 ```
 
 ![User identity and sudo privileges](https://github.com/Z23599848/OS-coursework/blob/main/images/3_week2.png)
