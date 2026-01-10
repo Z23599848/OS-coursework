@@ -141,5 +141,5 @@ Developing the threat model clarified the importance of layered defenses. Relyin
 
 ---
 
-[←Week 1](./week1.md) | [Home](./index.md) | [Week 3 →](./week3.md)
+[←Week 1](./week1.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 3 →](./week3.md)
 
