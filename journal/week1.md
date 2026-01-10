@@ -15,31 +15,46 @@ This week addresses the following learning outcomes:
 The following diagram illustrates the planned dual-system architecture consisting of a headless Linux server and a separate administrative workstation. This design enforces command-line proficiency while maintaining strong isolation between systems.
 
 ```mermaid
-graph TD
-    subgraph PhysicalHost ["PHYSICAL HOST MACHINE"]
-        direction TB
-        
-        subgraph VirtualBox ["ORACLE VIRTUALBOX"]
-            direction TB
+graph LR
+    %% Physical Host
+    subgraph Host["Host Machine Windows"]
+        direction LR
 
-            subgraph VM_Client ["Workstation VM (Client)"]
-                direction LR
-                Tools["<b>Tools</b><br/>SSH, htop, nmap"]
-                OS_Client["<b>OS</b><br/>Ubuntu Desktop 22.04 LTS"]
+        %% VirtualBox
+        subgraph VBox["VirtualBox"]
+            direction LR
+
+            subgraph Client["Client VM"]
+                OS_C["Ubuntu 22.04"]
+                Tools["SSH | htop | nmap"]
             end
 
-            VSwitch{{"Virtual Switch"}}
+            VSwitch{{vSwitch}}
 
-            subgraph VM_Server ["Server VM (Target)"]
-                direction LR
-                OS_Server["<b>OS</b><br/>Ubuntu Server 22.04 LTS (Headless)"]
-                Services["<b>Services</b><br/>SSHD :22, UFW, AppArmor"]
+            subgraph Server["Server VM"]
+                OS_S["Ubuntu Server 22.04"]
+                Svc["SSHD :22 | UFW | AppArmor"]
             end
 
-            VM_Client <==>|"Host-Only Traffic"| VSwitch
-            VSwitch <==> VM_Server
+            Client <-->|Host-Only| VSwitch
+            VSwitch <-->| | Server
         end
     end
+
+    %% Styling
+    classDef host fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#000;
+    classDef container fill:#f8fafc,stroke:#64748b,stroke-width:1px,color:#000;
+    classDef client fill:#dbeafe,stroke:#2563eb,stroke-width:1px,color:#000;
+    classDef server fill:#fee2e2,stroke:#dc2626,stroke-width:1px,color:#000;
+    classDef switch fill:#dcfce7,stroke:#16a34a,stroke-width:1px,color:#000;
+
+    %% Apply classes
+    class Host host;
+    class VBox container;
+    class Client,OS_C,Tools client;
+    class Server,OS_S,Svc server;
+    class VSwitch switch;
+
 ```
 
 ---
