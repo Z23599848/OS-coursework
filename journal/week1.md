@@ -17,36 +17,36 @@ The following diagram illustrates the planned dual-system architecture consistin
 ```mermaid
 graph LR
     %% Physical Host
-    subgraph Host["Host Machine Windows"]
+    subgraph Host["<b>Host Machine (Windows)</b>"]
         direction LR
 
         %% VirtualBox
-        subgraph VBox["VirtualBox"]
+        subgraph VBox["<b>VirtualBox</b>"]
             direction LR
 
-            subgraph Client["Client VM"]
-                OS_C["Ubuntu 22.04"]
-                Tools["SSH | htop | nmap"]
+            subgraph Client["<b>Client VM</b>"]
+                OS_C["<b>Ubuntu 22.04</b>"]
+                Tools["<b>SSH | htop | nmap</b>"]
             end
 
-            VSwitch{{vSwitch}}
+            VSwitch{{"<b>vSwitch</b>"}}
 
-            subgraph Server["Server VM"]
-                OS_S["Ubuntu Server 22.04"]
-                Svc["SSHD :22 | UFW | AppArmor"]
+            subgraph Server["<b>Server VM</b>"]
+                OS_S["<b>Ubuntu Server 22.04</b>"]
+                Svc["<b>SSHD :22 | UFW | AppArmor</b>"]
             end
 
-            Client <-->|Host-Only| VSwitch
+            Client <-->|"<b>Host-Only</b>"| VSwitch
             VSwitch <-->| | Server
         end
     end
 
     %% Styling
-    classDef host fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#000;
-    classDef container fill:#f8fafc,stroke:#64748b,stroke-width:1px,color:#000;
-    classDef client fill:#dbeafe,stroke:#2563eb,stroke-width:1px,color:#000;
-    classDef server fill:#fee2e2,stroke:#dc2626,stroke-width:1px,color:#000;
-    classDef switch fill:#dcfce7,stroke:#16a34a,stroke-width:1px,color:#000;
+    classDef host fill:#e0f2fe,stroke:#0284c7,stroke-width:1px,color:#000,font-size:16px;
+    classDef container fill:#f8fafc,stroke:#64748b,stroke-width:1px,color:#000,font-size:15px;
+    classDef client fill:#dbeafe,stroke:#2563eb,stroke-width:1px,color:#000,font-size:16px;
+    classDef server fill:#fee2e2,stroke:#dc2626,stroke-width:1px,color:#000,font-size:16px;
+    classDef switch fill:#dcfce7,stroke:#16a34a,stroke-width:1px,color:#000,font-size:15px;
 
     %% Apply classes
     class Host host;
@@ -54,6 +54,7 @@ graph LR
     class Client,OS_C,Tools client;
     class Server,OS_S,Svc server;
     class VSwitch switch;
+
 
 ```
 
