@@ -28,7 +28,7 @@ graph TD
                 OS_Client["<b>OS</b><br/>Ubuntu Desktop 22.04 LTS"]
             end
 
-            VSwitch{{"Virtual Switch<br/>192.168.56.0/24"}}
+            VSwitch{{"Virtual Switch"}}
 
             subgraph VM_Server ["Server VM (Target)"]
                 direction LR
