@@ -130,10 +130,9 @@ Expected: `7.0.14r*****`
 
 A VirtualBox **Host-Only Adapter** is used to create a fully isolated private network. This prevents unintended external exposure while allowing controlled inter-VM communication.
 
-* **Network CIDR:** `192.168.56.0/24`
 * **Server IP:** `192.168.56.101`
-* **Workstation IP:** `192.168.56.20`
-* **Gateway:** `192.168.56.1`
+* **Workstation IP:** `192.168.56.102`
+
 
 This configuration supports secure administration and controlled testing throughout the coursework.
 
