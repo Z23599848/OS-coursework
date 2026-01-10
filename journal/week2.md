@@ -61,8 +61,7 @@ This confirms that the user operates without direct root login while retaining a
 The SSH service is accessible only within the private host-only network. Network configuration and active listening ports were verified to ensure SSH is the sole exposed remote access service.
 
 ```bash
-ip addr
-ss -tulpn | grep ssh
+ip addr; sudo ss -tulpn | grep ssh
 ```
 
 ![SSH listening ports](https://github.com/Z23599848/OS-coursework/blob/main/images/4_week2.png)
