@@ -31,7 +31,7 @@ All administration of the server is performed remotely from the dedicated Linux 
 The workstation connects to the server over the isolated host-only network using the server’s private IP address.
 
 ```bash
-ssh user@192.168.56.101
+ssh ali@192.168.56.101
 ```
 
 ![SSH login from workstation](https://github.com/Z23599848/OS-coursework/blob/main/images/2_week2.png)
