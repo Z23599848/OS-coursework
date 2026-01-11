@@ -139,4 +139,4 @@ The combination of host hardening, continuous auditing, firewall enforcement, an
 
 ---
 
-[← Previous: Week 6](./we
+[←Week 6](./week6.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md)
