@@ -1,63 +1,83 @@
 #!/bin/bash
 
-echo "======================================"
-echo "   STARTING SECURITY BASELINE AUDIT"
-echo "======================================"
+# ANSI colors
+BOLD="\e[1m"
+DIM="\e[2m"
+RESET="\e[0m"
+BLUE="\e[34m"
+GREEN="\e[32m"
+RED="\e[31m"
+YELLOW="\e[33m"
+CYAN="\e[36m"
+
+LINE="────────────────────────────────────────"
+
+clear
+
+echo -e "${BOLD}${BLUE}${LINE}"
+echo -e "   STARTING SECURITY BASELINE AUDIT"
+echo -e "${LINE}${RESET}"
+echo
 
 # 1. Firewall (UFW)
-echo "[1] Checking firewall status..."
+echo -e "${BOLD}${CYAN}[1] Firewall (UFW) Status${RESET}"
 if sudo ufw status | grep -q "Status: active"; then
-    echo "  [OK] UFW firewall is ACTIVE"
+    echo -e "  ${GREEN}[OK]${RESET} UFW firewall is ACTIVE"
 else
-    echo "  [FAIL] UFW firewall is NOT active"
+    echo -e "  ${RED}[FAIL]${RESET} UFW firewall is NOT active"
 fi
+echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 2. SSH Root Login
-echo "[2] Checking SSH root login configuration..."
+echo -e "${BOLD}${CYAN}[2] SSH Root Login Configuration${RESET}"
 if sudo grep -q "^PermitRootLogin no" /etc/ssh/sshd_config; then
-    echo "  [OK] Root login via SSH is DISABLED"
+    echo -e "  ${GREEN}[OK]${RESET} Root login via SSH is DISABLED"
 else
-    echo "  [FAIL] Root login via SSH may be ENABLED"
+    echo -e "  ${RED}[FAIL]${RESET} Root login via SSH may be ENABLED"
 fi
+echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 3. SSH Password Authentication
-echo "[3] Checking SSH password authentication..."
+echo -e "${BOLD}${CYAN}[3] SSH Password Authentication${RESET}"
 if sudo grep -q "^PasswordAuthentication no" /etc/ssh/sshd_config; then
-    echo "  [OK] SSH password authentication is DISABLED"
+    echo -e "  ${GREEN}[OK]${RESET} SSH password authentication is DISABLED"
 else
-    echo "  [FAIL] SSH password authentication may be ENABLED"
+    echo -e "  ${RED}[FAIL]${RESET} SSH password authentication may be ENABLED"
 fi
+echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 4. AppArmor
-echo "[4] Checking AppArmor status..."
+echo -e "${BOLD}${CYAN}[4] AppArmor Status${RESET}"
 if sudo aa-status --enabled >/dev/null 2>&1; then
-    echo "  [OK] AppArmor is ENABLED"
+    echo -e "  ${GREEN}[OK]${RESET} AppArmor is ENABLED"
 else
-    echo "  [FAIL] AppArmor is NOT enabled"
+    echo -e "  ${RED}[FAIL]${RESET} AppArmor is NOT enabled"
 fi
+echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 5. Fail2Ban
-echo "[5] Checking Fail2Ban service..."
+echo -e "${BOLD}${CYAN}[5] Fail2Ban Service${RESET}"
 if systemctl is-active --quiet fail2ban; then
-    echo "  [OK] Fail2Ban service is RUNNING"
+    echo -e "  ${GREEN}[OK]${RESET} Fail2Ban service is RUNNING"
 else
-    echo "  [FAIL] Fail2Ban service is NOT running"
+    echo -e "  ${RED}[FAIL]${RESET} Fail2Ban service is NOT running"
 fi
+echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 6. Unattended Upgrades
-echo "[6] Checking unattended-upgrades service..."
+echo -e "${BOLD}${CYAN}[6] Unattended Upgrades${RESET}"
 if systemctl is-active --quiet unattended-upgrades; then
-    echo "  [OK] Unattended upgrades are ACTIVE"
+    echo -e "  ${GREEN}[OK]${RESET} Unattended upgrades are ACTIVE"
 else
-    echo "  [FAIL] Unattended upgrades are NOT active"
+    echo -e "  ${RED}[FAIL]${RESET} Unattended upgrades are NOT active"
 fi
 echo
 
-echo "======================================"
-echo "        SECURITY AUDIT COMPLETE"
-echo "======================================"
+echo -e "${BOLD}${BLUE}${LINE}"
+echo -e "        SECURITY AUDIT COMPLETE"
+echo -e "${LINE}${RESET}"
