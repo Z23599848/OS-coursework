@@ -59,7 +59,7 @@ ab -n 1000 -c 10 http://127.0.0.1/
 | Web Throughput | N/A        | 850 req/sec | Initial performance ceiling       |
 
 ![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-3.png)
-![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-4.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-7.png)
 
 These results established a clear baseline and highlighted performance degradation under sustained load.
 
@@ -119,7 +119,7 @@ After applying the optimisations, the HTTP benchmark was repeated using the same
 | Requests / Second | 2454    | 2597    | ~5.5% increase   |
 | Time per Request  | 0.407 ms | 0.385 ms | Reduced latency |
 
-![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-7.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-4.png)
 
 The results demonstrate that small, workload-aware configuration changes can significantly improve system performance.
 
