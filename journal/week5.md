@@ -90,9 +90,14 @@ A server-side Bash script was created to validate the continued presence of crit
 ### Script Deployment and Execution
 
 ```bash
-nano ~/security-baseline.sh;
-chmod +x ~/security-baseline.sh;
+cd ~
+curl -fsSL \
+  https://raw.githubusercontent.com/Z23599848/OS-coursework/main/scripts/security-baseline.sh \
+  -o security-baseline.sh
+
+chmod +x security-baseline.sh
 ./security-baseline.sh
+
 ```
 
 ![Security baseline script execution](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-5.png)
@@ -108,9 +113,14 @@ A client-side monitoring script was developed to collect essential performance m
 ### Script Execution
 
 ```bash
-nano ./monitor-server.sh;
-chmod +x ./monitor-server.sh;
+cd ~
+curl -fsSL \
+  https://raw.githubusercontent.com/Z23599848/OS-coursework/main/scripts/monitor-server.sh \
+  -o monitor-server.sh
+
+chmod +x monitor-server.sh
 ./monitor-server.sh
+
 ```
 
 ![Remote monitoring script output](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-6.png)
