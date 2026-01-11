@@ -22,7 +22,7 @@ sudo lynis audit system
 
 ![Initial Lynis audit results (baseline hardening index)](https://github.com/USERNAME/REPO/blob/main/images/week7-1.png)
 
-* **Initial Hardening Index:** 63
+* **Initial Hardening Index:** 62
 
 The baseline results identified several non-critical but relevant recommendations, including the absence of a legal login banner, limited auditing coverage, and opportunities to further harden shared memory usage.
 
