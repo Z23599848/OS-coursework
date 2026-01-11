@@ -116,8 +116,8 @@ After applying the optimisations, the HTTP benchmark was repeated using the same
 
 | Metric            | Before   | After    | Improvement     |
 | ----------------- | -------- | -------- | --------------- |
-| Requests / Second | 2406.77  | 3935.78  | ~29% increase   |
-| Time per Request  | 0.415 ms | 0.254 ms | Reduced latency |
+| Requests / Second | 2454    | 2597    | ~5.5% increase   |
+| Time per Request  | 0.407 ms | 0.385 ms | Reduced latency |
 
 ![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-7.png)
 
