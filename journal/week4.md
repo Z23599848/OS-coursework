@@ -1,68 +1,132 @@
 # Week 4: Initial System Configuration & Security Implementation
 
-## 1. User Management
+## 1. Overview
 
-I created a new administrative user to avoid using `root` directly.
+This week marks the transition from planning to execution. The security strategies designed earlier were implemented directly on the server, with a strong emphasis on minimising the attack surface. The primary objectives were to enforce least-privilege access, remove password-based authentication, and restrict remote access exclusively to the administrator’s workstation.
 
-```bash
-sudo adduser admin
-sudo usermod -aG sudo admin
-```
+**Administrative Constraint:** All configuration changes were carried out remotely via SSH, in full compliance with the assessment requirements.
 
-## 2. SSH Hardening
+---
 
-I modified `/etc/ssh/sshd_config` to secure remote access.
+## 2. User and Privilege Management
 
-### Before
-```
-PermitRootLogin yes
-PasswordAuthentication yes
-```
+To align with the Principle of Least Privilege, administrative responsibilities were separated from default system accounts by introducing a dedicated administrator user.
 
-### After
-```
-PermitRootLogin no
-PasswordAuthentication no
-```
+### Actions Performed
 
-**Evidence of successful connection:**
-```bash
-$ ssh -i ~/.ssh/id_rsa admin@192.168.56.10
-Welcome to Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-91-generic x86_64)
-...
-admin@server-vm:~$
-```
+* Created a new administrative user to clearly distinguish human administration from system processes.
+* Granted this user controlled elevation rights via the `sudo` group.
+* Prevented routine use of the root account, ensuring all privileged actions are auditable.
 
-## 3. Firewall Configuration (UFW)
-
-I configured the Uncomplicated Firewall (UFW) to only allow SSH from my workstation.
+### Command Execution (grouped)
 
 ```bash
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow from 192.168.56.20 to any port 22 proto tcp
-sudo ufw enable
+sudo adduser adminuser;
+sudo usermod -aG sudo adminuser
 ```
 
-**Status Output:**
+**Security Rationale:** Disabling direct root usage significantly reduces the likelihood of successful brute-force attacks and improves accountability through logged privilege escalation.
+
+**Screenshot evidence:**
+
+```md
+![User creation and sudo assignment](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-1.png)
+```
+
+A single terminal capture showing both commands executed sequentially, following the screenshot style used throughout the repository.
+
+---
+
+## 3. SSH Configuration and Hardening
+
+### 3.1 Key-Based Authentication
+
+Password authentication was replaced with public key authentication to eliminate credential guessing attacks. An Ed25519 key pair was selected due to its modern cryptographic strength and efficiency.
+
+### Command Execution (grouped)
+
 ```bash
-admin@server-vm:~$ sudo ufw status verbose
-Status: active
-Logging: on (low)
-Default: deny (incoming), allow (outgoing), disabled (routed)
-New profiles: skip
-
-To                         Action      From
---                         ------      ----
-22/tcp                     ALLOW IN    192.168.56.20
+ssh-keygen -t ed25519 -C "admin_access";
+ssh-copy-id -i ~/.ssh/id_ed25519.pub adminuser@192.168.56.6;
+ssh adminuser@192.168.56.6
 ```
 
-## 4. Remote Administration Evidence
+**Outcome:** Successful login using the private key confirmed that password-based access was no longer required.
 
-I executed the following command from my workstation to verify the server's uptime remotely:
+```md
+![SSH key-based login](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-2.png)
+```
+
+One screenshot capturing the full authentication workflow.
+
+---
+
+### 3.2 SSH Daemon Hardening (Before and After)
+
+The SSH daemon configuration was tightened to explicitly disable insecure defaults.
+
+| Directive              | Previous State    | Updated State | Justification                       |
+| ---------------------- | ----------------- | ------------- | ----------------------------------- |
+| PermitRootLogin        | Enabled (default) | Disabled      | Removes a high-value attack target  |
+| PasswordAuthentication | Enabled           | Disabled      | Forces cryptographic authentication |
+| PubkeyAuthentication   | Enabled           | Enabled       | Maintains secure access mechanism   |
+
+### Verification and Deployment
 
 ```bash
-$ ssh admin@192.168.56.10 "uptime"
- 14:30:15 up 2 days,  4:12,  1 user,  load average: 0.00, 0.01, 0.00
+sudo grep -E "PermitRootLogin|PasswordAuthentication" /etc/ssh/sshd_config;
+sudo nano /etc/ssh/sshd_config;
+sudo systemctl restart ssh
 ```
-[← Week 3](week3.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 5 →](week5.md)
+
+**Screenshot evidence:**
+
+```md
+![SSH configuration before and after](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-3.png)
+```
+
+A single screenshot showing the configuration verification and SSH service restart.
+
+---
+
+## 4. Firewall Configuration (UFW)
+
+A default-deny firewall posture was implemented using Uncomplicated Firewall (UFW). Only SSH traffic originating from the administrator workstation IP was permitted.
+
+### Firewall Policy
+
+* Incoming traffic: Denied by default
+* Outgoing traffic: Allowed
+* Explicit allow rule: SSH from workstation IP only
+
+### Command Execution (grouped)
+
+```bash
+sudo ufw default deny incoming;
+sudo ufw default allow outgoing;
+sudo ufw allow from 192.168.56.6 to any port 22;
+sudo ufw enable;
+sudo ufw status numbered
+```
+
+**Security Impact:** This configuration ensures that even if a service is accidentally exposed, it remains unreachable from unauthorised hosts.
+
+**Screenshot evidence:**
+
+```md
+![UFW firewall ruleset](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-4.png)
+```
+
+One screenshot displaying the enabled firewall and the final numbered ruleset.
+
+---
+
+## 5. Risk Management and Operational Reflection
+
+Applying security controls over an SSH-only connection introduces the risk of accidental lockout. This was mitigated through staged validation: SSH key authentication was confirmed in a separate session before disabling password access, and firewall rules were verified prior to enabling enforcement.
+
+This process reinforced a key operational principle used in professional environments: validate access paths before committing restrictive controls. The experience highlighted the importance of redundancy and cautious sequencing when administering headless systems.
+
+---
+
+[← Previous: Week 3](./week3.md) | [Return to Home](./index.md) | [Next: Week 5 →](./week5.md)
