@@ -35,7 +35,7 @@ The following tools were used to generate load and capture system metrics:
 stress-ng --cpu 2 --vm 2 --vm-bytes 128M --timeout 60s --metrics-brief
 
 # Remote monitoring via SSH
-ssh adminuser@192.168.56.6 "vmstat 1 10"
+ssh adminuser@192.168.56.104 "vmstat 1 10"
 
 # Web server benchmarking
 sudo apt install apache2-utils -y
