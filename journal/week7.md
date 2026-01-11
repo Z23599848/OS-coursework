@@ -20,7 +20,7 @@ sudo apt install lynis -y
 sudo lynis audit system
 ```
 
-![Initial Lynis audit results (baseline hardening index)](https://github.com/USERNAME/REPO/blob/main/images/week7-1.png)
+![Initial Lynis audit results (baseline hardening index)](https://github.com/Z23599848/OS-coursework/blob/main/images/week7-1.png)
 
 * **Initial Hardening Index:** 62
 
@@ -61,7 +61,7 @@ sudo nano /etc/ssh/sshd_config
 # ClientAliveCountMax 0
 ```
 
-![Auditd enabled and configuration changes applied](https://github.com/USERNAME/REPO/blob/main/images/week7-2.png)
+![Auditd enabled and configuration changes applied](https://github.com/Z23599848/OS-coursework/blob/main/images/week7-2.png)
 
 ---
 
@@ -73,7 +73,7 @@ After remediation, the Lynis audit was re-run to validate the effectiveness of t
 sudo lynis audit system
 ```
 
-![Final Lynis audit results after remediation](https://github.com/USERNAME/REPO/blob/main/images/week7-3.png)
+![Final Lynis audit results after remediation](https://github.com/Z23599848/OS-coursework/blob/main/images/week7-3.png)
 
 * **Final Hardening Index:** 65
 
@@ -89,7 +89,7 @@ To validate firewall enforcement and external exposure, a network scan was perfo
 nmap -sV 192.168.56.6
 ```
 
-![Nmap scan results showing exposed services](https://github.com/USERNAME/REPO/blob/main/images/week7-4.png)
+![Nmap scan results showing exposed services](https://github.com/Z23599848/OS-coursework/blob/main/images/week7-4.png)
 
 **Analysis:**
 The scan confirmed that only **port 22 (SSH)** is accessible. All other ports were filtered or closed, demonstrating that the firewall configuration effectively minimises the external attack surface.
@@ -104,7 +104,7 @@ In line with the **principle of least privilege**, all active services were revi
 systemctl list-units --type=service --state=running
 ```
 
-![Running services on the server](https://github.com/USERNAME/REPO/blob/main/images/week7-5.png)
+![Running services on the server](https://github.com/Z23599848/OS-coursework/blob/main/images/week7-5.png)
 
 | Service             | Status  | Justification                                        |
 | ------------------- | ------- | ---------------------------------------------------- |
