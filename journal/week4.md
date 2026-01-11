@@ -129,4 +129,4 @@ This process reinforced a key operational principle used in professional environ
 
 ---
 
-[←Week 3](./week3.md) | [Home](./index.md) | [Week 5 →](./week5.md)
+[←Week 3](./week3.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 5 →](./week5.md)
