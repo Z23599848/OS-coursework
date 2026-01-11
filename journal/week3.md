@@ -60,9 +60,7 @@ To verify successful installations and services:
 stress-ng --version; systemctl status nginx; iperf3 -s;
 ```
 
-![Stress-ng Verification](https://github.com/Z23599848/OS-coursework/blob/main/images/week3-4.png)
-![Nginx Status](https://github.com/Z23599848/OS-coursework/blob/main/images/week3-5.png)
-![Iperf3 Server](https://github.com/Z23599848/OS-coursework/blob/main/images/week3-6.png)
+![Stress-ng Verification-Nginx Status-Iperf3 Server](https://github.com/Z23599848/OS-coursework/blob/main/images/week3-4.png)
 
 ---
 
@@ -88,7 +86,7 @@ To assess the resource impact of these applications, I will employ the following
 **Tool:** `htop` via SSH
 **Purpose:** Provides visual confirmation that the expected resource is being stressed during the test.
 
-![htop Monitoring](https://github.com/Z23599848/OS-coursework/blob/main/images/week3-7.png)
+![htop Monitoring](https://github.com/Z23599848/OS-coursework/blob/main/images/week3-5.png)
 
 #### B. Data Logging (Quantitative)
 
