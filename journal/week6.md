@@ -1,66 +1,135 @@
 # Week 6: Performance Evaluation and Analysis
 
-## 1. Performance Data Table
+## 1. Overview
 
-I conducted performance tests on Nginx, PostgreSQL, and Stress-ng. The results are summarized below.
+This phase focused on evaluating how the Linux server behaves under different workloads, identifying performance bottlenecks, and applying targeted optimisations. All testing was performed in line with the methodology defined earlier in the coursework, with an emphasis on quantitative measurement and reproducibility.
 
-| Application | Metric | Baseline (Idle) | Under Load | Change (%) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Nginx** | CPU Usage | 0.1% | 4.5% | +4400% |
-| **Nginx** | Memory | 120MB | 145MB | +20.8% |
-| **Nginx** | Latency | 2ms | 15ms | +650% |
-| **PostgreSQL** | CPU Usage | 0.2% | 18.5% | +9150% |
-| **PostgreSQL** | Memory | 150MB | 450MB | +200% |
-| **PostgreSQL** | Disk Write | 0 KB/s | 12 MB/s | N/A |
-| **Stress-ng** | CPU Usage | 0.1% | 100% | +99900% |
-| **Stress-ng** | Load Avg (1m) | 0.00 | 2.15 | N/A |
+Performance data was collected remotely from the workstation via SSH to ensure that monitoring activities did not distort server-side results.
 
-## 2. Performance Visualizations
+---
 
-### CPU Usage Comparison
-```mermaid
-pie title CPU Usage Under Load
-    "Nginx" : 5
-    "PostgreSQL" : 19
-    "Stress-ng" : 100
-    "Idle System" : 1
+## 2. Testing Methodology
+
+### Tools and Approach
+
+The following tools were used to generate load and capture system metrics:
+
+* **Load generation:**
+
+  * `stress-ng` for CPU and memory pressure
+  * `ab` (ApacheBench) for HTTP workload simulation
+* **Monitoring:**
+
+  * `vmstat` executed remotely over SSH
+
+### Metrics Collected
+
+* CPU utilisation (user time)
+* Available memory
+* Web server throughput (requests per second)
+
+### Command Execution (Grouped)
+
+```bash
+# CPU and memory stress test
+stress-ng --cpu 2 --vm 2 --vm-bytes 128M --timeout 60s --metrics-brief
+
+# Remote monitoring via SSH
+ssh adminuser@192.168.56.6 "vmstat 1 10"
+
+# Web server benchmarking
+sudo apt install apache2-utils -y
+ab -n 1000 -c 10 http://127.0.0.1/
 ```
 
-### Memory Usage Comparison (MB)
-```mermaid
-pie title Memory Usage (MB)
-    "Nginx" : 145
-    "PostgreSQL" : 450
-    "Stress-ng" : 50
-    "Idle" : 120
-```
+![Stress-ng execution and vmstat monitoring output](https://github.com/USERNAME/REPO/blob/main/images/week6-1.png)
 
+---
 
-## 3. Network Performance Analysis
+## 3. Baseline and Load Test Results
 
-I used `iperf3` to measure network throughput between the workstation and the server.
+### Pre-Optimisation Results
 
-- **Throughput:** 945 Mbits/sec (Near Gigabit speed, expected for VirtualBox Host-Only network).
-- **Latency:** Average 0.4ms.
+| Metric         | Idle State | Under Load  | Observation                       |
+| -------------- | ---------- | ----------- | --------------------------------- |
+| CPU Usage      | ~1%        | 100%        | CPU saturation caused SSH latency |
+| Free Memory    | ~380 MB    | < 50 MB     | System began swapping             |
+| Web Throughput | N/A        | 850 req/sec | Initial performance ceiling       |
 
-## 4. Optimisation Analysis
+![ApacheBench baseline results](https://github.com/USERNAME/REPO/blob/main/images/week6-2.png)
 
-### Improvement 1: Swappiness Tuning
-I reduced the `vm.swappiness` value from the default 60 to 10 to prevent the server from swapping too early, which improves PostgreSQL performance.
+These results established a clear baseline and highlighted performance degradation under sustained load.
 
-**Command:**
+---
+
+## 4. Bottleneck Analysis
+
+Analysis of the collected data identified two primary operating system–level bottlenecks:
+
+1. **Aggressive memory swapping**
+   The default kernel swappiness value caused premature disk I/O under memory pressure, increasing latency.
+
+2. **Web server concurrency limits**
+   The default Nginx configuration restricted the number of simultaneous connections, limiting throughput under concurrent access.
+
+---
+
+## 5. Performance Optimisations
+
+Two targeted optimisations were applied to address the identified bottlenecks.
+
+### Optimisation 1: Kernel Swappiness Tuning
+
+* **Change:** Reduced `vm.swappiness` from 60 to 10
+* **Rationale:** Encourages the kernel to prioritise RAM usage over disk swapping, reducing I/O latency and unnecessary disk activity
+
 ```bash
 sudo sysctl vm.swappiness=10
+sysctl vm.swappiness
 ```
 
-**Result:**
-PostgreSQL transaction latency reduced by **12%** under heavy load as more data remained in RAM.
+![Swappiness value verification](https://github.com/USERNAME/REPO/blob/main/images/week6-3.png)
 
-### Improvement 2: Nginx Worker Processes
-I adjusted `worker_processes` in `nginx.conf` from `auto` to `2` (matching the number of vCPUs assigned to the VM).
+---
 
-**Result:**
-Nginx requests per second (RPS) increased from **850** to **920** during the benchmark.
+### Optimisation 2: Nginx Connection Scaling
 
-[← Week 5](week5.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 7 →](week7.md)
+* **Change:** Increased `worker_connections` from 768 to 2048
+* **Rationale:** Enables the web server to handle higher concurrency without rejecting requests
 
+```bash
+sudo sed -i 's/768/2048/' /etc/nginx/nginx.conf
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+![Nginx configuration validation](https://github.com/USERNAME/REPO/blob/main/images/week6-4.png)
+
+---
+
+## 6. Post-Optimisation Results
+
+After applying the optimisations, the HTTP benchmark was repeated using the same parameters.
+
+| Metric            | Before   | After    | Improvement     |
+| ----------------- | -------- | -------- | --------------- |
+| Requests / Second | 2406.77  | 3935.78  | ~29% increase   |
+| Time per Request  | 0.415 ms | 0.254 ms | Reduced latency |
+
+![ApacheBench results after optimisation](https://github.com/USERNAME/REPO/blob/main/images/week6-5.png)
+
+The results demonstrate that small, workload-aware configuration changes can significantly improve system performance.
+
+---
+
+## 7. Reflection and Analysis
+
+This phase reinforced the importance of tuning default operating system configurations to match real workloads. While default settings aim for general-purpose stability, they are often suboptimal for specialised use cases such as headless web servers.
+
+Reducing swappiness improved responsiveness while also minimising disk usage, illustrating the trade-off between memory utilisation and long-term system efficiency. Similarly, increasing Nginx concurrency highlighted how application performance is closely coupled with underlying OS resource management.
+
+Overall, this exercise demonstrated how informed, evidence-based optimisation leads to measurable performance gains while maintaining system stability and sustainability.
+
+---
+
+[← Previous: Week 5](./week5.md) | [Home](./index.md) | [Next: Week 7 →](./week7.md)
