@@ -44,7 +44,6 @@ ab -n 1000 -c 10 http://127.0.0.1/
 
 ![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-1.png)
 ![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-2.png)
-![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-3.png)
 
 
 ---
@@ -59,7 +58,7 @@ ab -n 1000 -c 10 http://127.0.0.1/
 | Free Memory    | ~380 MB    | < 50 MB     | System began swapping             |
 | Web Throughput | N/A        | 850 req/sec | Initial performance ceiling       |
 
-![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-4.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-3.png)
 
 These results established a clear baseline and highlighted performance degradation under sustained load.
 
