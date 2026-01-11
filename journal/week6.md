@@ -43,6 +43,8 @@ ab -n 1000 -c 10 http://127.0.0.1/
 ```
 
 ![Stress-ng execution and vmstat monitoring output](https://github.com/USERNAME/REPO/blob/main/images/week6-1.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/USERNAME/REPO/blob/main/images/week6-2.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/USERNAME/REPO/blob/main/images/week6-3.png)
 
 ---
 
