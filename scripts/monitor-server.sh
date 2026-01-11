@@ -10,9 +10,13 @@ RESET="\e[0m"
 BLUE="\e[34m"
 CYAN="\e[36m"
 GREEN="\e[32m"
-YELLOW="\e[33m"
 
 LINE="────────────────────────────────────────"
+
+# SSH connection multiplexing options
+SSH_OPTS="-o ControlMaster=auto \
+          -o ControlPersist=60s \
+          -o ControlPath=$HOME/.ssh/cm-%r@%h:%p"
 
 clear
 
@@ -24,28 +28,29 @@ echo
 
 # 1. Memory usage
 echo -e "${BOLD}${GREEN}[1] Memory Usage${RESET}"
-ssh $TARGET_USER@$TARGET_IP \
+ssh $SSH_OPTS ${TARGET_USER}@${TARGET_IP} \
   "free -m | awk 'NR==2 {printf \"  Used: %s MB / Total: %s MB\n\", \$3, \$2}'"
 echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 2. Disk usage
 echo -e "${BOLD}${GREEN}[2] Disk Usage (Root Filesystem)${RESET}"
-ssh $TARGET_USER@$TARGET_IP \
+ssh $SSH_OPTS ${TARGET_USER}@${TARGET_IP} \
   "df -h / | awk 'NR==2 {printf \"  Used: %s / %s (%s)\n\", \$3, \$2, \$5}'"
 echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 3. CPU load
 echo -e "${BOLD}${GREEN}[3] CPU Load Average${RESET}"
-ssh $TARGET_USER@$TARGET_IP \
+ssh $SSH_OPTS ${TARGET_USER}@${TARGET_IP} \
   "uptime | awk -F'load average:' '{print \"  \" \$2}'"
 echo -e "${DIM}${LINE}${RESET}"
 echo
 
 # 4. System uptime
 echo -e "${BOLD}${GREEN}[4] System Uptime${RESET}"
-ssh $TARGET_USER@$TARGET_IP "uptime -p | sed 's/^/  /'"
+ssh $SSH_OPTS ${TARGET_USER}@${TARGET_IP} \
+  "uptime -p | sed 's/^/  /'"
 echo
 
 echo -e "${BOLD}${BLUE}${LINE}"
