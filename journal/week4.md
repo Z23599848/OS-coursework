@@ -29,9 +29,8 @@ sudo usermod -aG sudo adminuser
 
 **Screenshot evidence:**
 
-```md
 ![User creation and sudo assignment](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-1.png)
-```
+
 
 A single terminal capture showing both commands executed sequentially, following the screenshot style used throughout the repository.
 
@@ -53,9 +52,9 @@ ssh adminuser@192.168.56.6
 
 **Outcome:** Successful login using the private key confirmed that password-based access was no longer required.
 
-```md
+
 ![SSH key-based login](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-2.png)
-```
+
 
 One screenshot capturing the full authentication workflow.
 
@@ -81,9 +80,9 @@ sudo systemctl restart ssh
 
 **Screenshot evidence:**
 
-```md
+
 ![SSH configuration before and after](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-3.png)
-```
+
 
 A single screenshot showing the configuration verification and SSH service restart.
 
@@ -113,9 +112,9 @@ sudo ufw status numbered
 
 **Screenshot evidence:**
 
-```md
+
 ![UFW firewall ruleset](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-4.png)
-```
+
 
 One screenshot displaying the enabled firewall and the final numbered ruleset.
 
