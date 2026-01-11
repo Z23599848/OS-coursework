@@ -1,35 +1,34 @@
 #!/bin/bash
 
-# monitor-server.sh
-# Collects performance metrics from the server.
-# Usage: ./monitor-server.sh <user>@<host>
+TARGET_USER="adminuser"
+TARGET_IP="192.168.56.6"
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <user>@<host>"
-    exit 1
-fi
+echo "======================================"
+echo "  REMOTE SERVER MONITORING REPORT"
+echo "  Target: $TARGET_USER@$TARGET_IP"
+echo "======================================"
+echo
 
-TARGET=$1
+# 1. Memory usage
+echo "[1] Memory usage:"
+ssh $TARGET_USER@$TARGET_IP "free -m | awk 'NR==2 {print \"Used:\", \$3 \"MB / Total:\", \$2 \"MB\"}'"
+echo
 
-echo "Connecting to $TARGET to collect metrics..."
-echo "----------------------------------------"
+# 2. Disk usage
+echo "[2] Disk usage (root filesystem):"
+ssh $TARGET_USER@$TARGET_IP "df -h / | awk 'NR==2 {print \"Used:\", \$3 \"/\" \$2 \" (\" \$5 \")\"}'"
+echo
 
-ssh -t "$TARGET" "
-    echo '--- CPU Usage ---'
-    top -bn1 | grep 'Cpu(s)'
-    
-    echo ''
-    echo '--- Memory Usage ---'
-    free -h
-    
-    echo ''
-    echo '--- Disk Usage ---'
-    df -h /
-    
-    echo ''
-    echo '--- Network Statistics ---'
-    ip -s link
-"
+# 3. CPU load
+echo "[3] CPU load average:"
+ssh $TARGET_USER@$TARGET_IP "uptime | awk -F'load average:' '{print \$2}'"
+echo
 
-echo "----------------------------------------"
-echo "Monitoring Complete."
+# 4. System uptime
+echo "[4] System uptime:"
+ssh $TARGET_USER@$TARGET_IP "uptime -p"
+echo
+
+echo "======================================"
+echo "      MONITORING COMPLETE"
+echo "======================================"
