@@ -87,7 +87,7 @@ All monitoring is performed remotely from the workstation via SSH to avoid measu
 | CPU utilization | `mpstat 1 5;`             | Distinguishes user vs. system CPU consumption |
 | Memory usage    | `free -m;`                | Tracks RAM and swap pressure                  |
 | Disk I/O        | `iostat -xz 1 5;`         | Identifies storage-related bottlenecks        |
-| Network latency | `ping -c 5 192.168.56.6;` | Measures RTT between server and workstation   |
+| Network latency | `ping -c 5 192.168.56.4;` | Measures RTT between server and workstation   |
 
 ---
 
