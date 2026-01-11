@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TARGET_USER="adminuser"
-TARGET_IP="192.168.56.6"
+TARGET_IP="192.168.56.104"
 
 echo "======================================"
 echo "  REMOTE SERVER MONITORING REPORT"
