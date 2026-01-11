@@ -42,9 +42,10 @@ sudo apt install apache2-utils -y
 ab -n 1000 -c 10 http://127.0.0.1/
 ```
 
-![Stress-ng execution and vmstat monitoring output](https://github.com/USERNAME/REPO/blob/main/images/week6-1.png)
-![Stress-ng execution and vmstat monitoring output](https://github.com/USERNAME/REPO/blob/main/images/week6-2.png)
-![Stress-ng execution and vmstat monitoring output](https://github.com/USERNAME/REPO/blob/main/images/week6-3.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-1.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-2.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-3.png)
+
 
 ---
 
@@ -58,7 +59,7 @@ ab -n 1000 -c 10 http://127.0.0.1/
 | Free Memory    | ~380 MB    | < 50 MB     | System began swapping             |
 | Web Throughput | N/A        | 850 req/sec | Initial performance ceiling       |
 
-![ApacheBench baseline results](https://github.com/USERNAME/REPO/blob/main/images/week6-2.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-4.png)
 
 These results established a clear baseline and highlighted performance degradation under sustained load.
 
@@ -90,7 +91,7 @@ sudo sysctl vm.swappiness=10
 sysctl vm.swappiness
 ```
 
-![Swappiness value verification](https://github.com/USERNAME/REPO/blob/main/images/week6-3.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-5.png)
 
 ---
 
@@ -105,7 +106,7 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-![Nginx configuration validation](https://github.com/USERNAME/REPO/blob/main/images/week6-4.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-6.png)
 
 ---
 
@@ -118,7 +119,7 @@ After applying the optimisations, the HTTP benchmark was repeated using the same
 | Requests / Second | 2406.77  | 3935.78  | ~29% increase   |
 | Time per Request  | 0.415 ms | 0.254 ms | Reduced latency |
 
-![ApacheBench results after optimisation](https://github.com/USERNAME/REPO/blob/main/images/week6-5.png)
+![Stress-ng execution and vmstat monitoring output](https://github.com/Z23599848/OS-coursework/blob/main/images/week6-7.png)
 
 The results demonstrate that small, workload-aware configuration changes can significantly improve system performance.
 
