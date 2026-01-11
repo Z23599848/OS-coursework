@@ -126,8 +126,4 @@ In designing the monitoring strategy, I considered the **Observer Effect**, whic
 
 ---
 
-[← Previous: Week 2](./week2.md) | [Return to Home](./index.md) | [Next: Week 4 →](./week4.md)
-
----
-
-Let me know if you need further customizations or more specific formatting!
+[←Week 2](./week2.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 4 →](./week4.md)
