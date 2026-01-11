@@ -25,7 +25,7 @@ This section defines the target “golden configuration” for the server. Compl
 #### A. Network and Firewall Configuration (UFW)
 
 * Default behavior: deny all inbound traffic; allow all outbound traffic.
-* SSH access limited to Port 22 from workstation IP `192.168.56.6` only.
+* SSH access limited to Port 22 from workstation IP `192.168.56.104` only.
 * Firewall logging enabled at low verbosity.
 * ICMP echo requests permitted for internal diagnostics.
 
