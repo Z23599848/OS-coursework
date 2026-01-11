@@ -135,5 +135,5 @@ chmod +x monitor-server.sh
 Developing automated verification and monitoring reinforced the importance of treating infrastructure as code. Instead of relying on manual checks, the system can now self-report deviations from its intended security state. This significantly improves reliability and highlights how automation reduces both operational overhead and configuration drift risk.
 
 ---
+[←Week 4](./week4.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 6 →](./week6.md)
 
-[← Previous: Week 4](./week4.md) | [Return to Home](./index.md) | [Next: Week 6 →](./week6.md)
