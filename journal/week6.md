@@ -135,4 +135,4 @@ Overall, this exercise demonstrated how informed, evidence-based optimisation le
 
 ---
 
-[← Previous: Week 5](./week5.md) | [Home](./index.md) | [Next: Week 7 →](./week7.md)
+[←Week 5](./week5.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 7 →](./week7.md)
