@@ -54,6 +54,8 @@ ssh adminuser@192.168.56.6
 
 
 ![SSH key-based login](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-2.png)
+![SSH key-based login](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-3.png)
+![SSH key-based login](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-4.png)
 
 
 One screenshot capturing the full authentication workflow.
@@ -81,7 +83,7 @@ sudo systemctl restart ssh
 **Screenshot evidence:**
 
 
-![SSH configuration before and after](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-3.png)
+![SSH configuration before and after](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-5.png)
 
 
 A single screenshot showing the configuration verification and SSH service restart.
@@ -113,7 +115,7 @@ sudo ufw status numbered
 **Screenshot evidence:**
 
 
-![UFW firewall ruleset](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-4.png)
+![UFW firewall ruleset](https://github.com/Z23599848/OS-coursework/blob/main/images/week4-6.png)
 
 
 One screenshot displaying the enabled firewall and the final numbered ruleset.
@@ -128,4 +130,4 @@ This process reinforced a key operational principle used in professional environ
 
 ---
 
-[← Previous: Week 3](./week3.md) | [Return to Home](./index.md) | [Next: Week 5 →](./week5.md)
+[←Week 3](./week3.md) | [Home](./index.md) | [Week 5 →](./week5.md)
