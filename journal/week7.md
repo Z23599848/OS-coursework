@@ -86,7 +86,7 @@ The improved score confirms that the system benefits from enhanced auditing, str
 To validate firewall enforcement and external exposure, a network scan was performed from the workstation using **Nmap**.
 
 ```bash
-nmap -sV 192.168.56.6
+nmap -sV 192.168.56.104
 ```
 
 ![Nmap scan results showing exposed services](https://github.com/Z23599848/OS-coursework/blob/main/images/week7-4.png)
