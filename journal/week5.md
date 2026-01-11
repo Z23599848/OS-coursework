@@ -63,10 +63,16 @@ Fail2Ban was deployed to actively monitor authentication logs and dynamically bl
 ### Command Execution (grouped)
 
 ```bash
+# Install fail2ban (if not installed)
 sudo apt install fail2ban -y;
+# Copy jail.conf to jail.local (for local configuration)
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local;
+# Restart the fail2ban service
 sudo systemctl restart fail2ban;
-sudo fail2ban-client status sshd
+# Check the status of the Fail2Ban service
+sudo systemctl status fail2ban;
+# If needed, check the status of the sshd jail
+sudo fail2ban-client status sshd;
 ```
 
 ![Fail2Ban SSH jail status](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-4.png)
