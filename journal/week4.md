@@ -46,8 +46,8 @@ Password authentication was replaced with public key authentication to eliminate
 
 ```bash
 ssh-keygen -t ed25519 -C "admin_access";
-ssh-copy-id -i ~/.ssh/id_ed25519.pub adminuser@192.168.56.6;
-ssh adminuser@192.168.56.6
+ssh-copy-id -i ~/.ssh/id_ed25519.pub adminuser@192.168.56.104;
+ssh adminuser@192.168.56.104
 ```
 
 **Outcome:** Successful login using the private key confirmed that password-based access was no longer required.
@@ -76,7 +76,6 @@ The SSH daemon configuration was tightened to explicitly disable insecure defaul
 
 ```bash
 sudo grep -E "PermitRootLogin|PasswordAuthentication" /etc/ssh/sshd_config;
-sudo nano /etc/ssh/sshd_config;
 sudo systemctl restart ssh
 ```
 
@@ -105,7 +104,7 @@ A default-deny firewall posture was implemented using Uncomplicated Firewall (UF
 ```bash
 sudo ufw default deny incoming;
 sudo ufw default allow outgoing;
-sudo ufw allow from 192.168.56.6 to any port 22;
+sudo ufw allow from 192.168.56.104 to any port 22;
 sudo ufw enable;
 sudo ufw status numbered
 ```
