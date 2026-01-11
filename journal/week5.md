@@ -1,86 +1,122 @@
-# Week 5: Advanced Security and Monitoring Infrastructure
+# Week 5: Advanced Security & Monitoring Infrastructure
 
-## 1. Access Control (AppArmor)
+## 1. Overview
 
-Ubuntu uses AppArmor by default. I verified its status and checked the profile for `tcpdump` as an example.
+This phase extends the baseline security controls implemented previously by introducing **mandatory access control**, **automated patch management**, and **active intrusion detection**. In parallel, automation scripts were developed to verify security posture and to monitor system health remotely, reinforcing repeatability and operational assurance.
+
+---
+
+## 2. Advanced Security Controls
+
+### 2.1 Mandatory Access Control – AppArmor
+
+AppArmor was enabled and verified to constrain application behaviour beyond traditional discretionary access control (DAC). This ensures that even if a service is compromised, its ability to access the wider filesystem remains tightly restricted.
+
+### Command Execution (grouped)
 
 ```bash
-admin@server-vm:~$ sudo aa-status
-apparmor module is loaded.
-44 profiles are loaded.
-44 profiles are in enforce mode.
-   /usr/bin/man
-   /usr/sbin/tcpdump
-   ...
-0 profiles are in complain mode.
-0 processes have profiles defined.
-0 processes are in enforce mode.
+sudo apt update;
+sudo apt install apparmor-utils -y;
+sudo aa-status
 ```
 
-## 2. Automatic Security Updates
+![AppArmor status and enforced profiles](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-1.png)
 
-I configured `unattended-upgrades` to ensure the system stays patched.
+**Security Impact:** Enforced AppArmor profiles provide containment at the application level, reducing lateral movement and post-exploitation impact.
 
-**Configuration File:** `/etc/apt/apt.conf.d/50unattended-upgrades`
-```
-Unattended-Upgrade::Allowed-Origins {
-        "${distro_id}:${distro_codename}";
-        "${distro_id}:${distro_codename}-security";
-        // Extended Security Maintenance; doesn't necessarily exist for
-        // every release and this system may not have it installed, but if
-        // available, the policy for updates is such that unattended-upgrades
-        // should also install from here by default.
-        "${distro_id}ESMApps:${distro_codename}-apps-security";
-        "${distro_id}ESM:${distro_codename}-infra-security";
-};
-```
+---
 
-## 3. Intrusion Detection (Fail2Ban)
+### 2.2 Automated Security Updates
 
-I installed and configured Fail2Ban to protect the SSH service.
+To address the risk of unpatched vulnerabilities, unattended security updates were configured. This ensures timely installation of security fixes without manual intervention.
 
-**Jail Configuration:** `/etc/fail2ban/jail.local`
-```ini
-[sshd]
-enabled = true
-port = ssh
-filter = sshd
-logpath = /var/log/auth.log
-maxretry = 3
-bantime = 3600
-```
+**Policy Configuration:**
 
-**Status Check:**
+* Automatic installation of security updates
+* Controlled automatic reboot scheduling for kernel updates
+
+### Command Execution (grouped)
+
 ```bash
-admin@server-vm:~$ sudo fail2ban-client status sshd
-Status for the jail: sshd
-|- Filter
-|  |- Currently failed: 0
-|  |- Total failed:     5
-|  `- File list:        /var/log/auth.log
-`- Actions
-   |- Currently banned: 1
-   |- Total banned:     1
-   `- Banned IP list:   192.168.56.105
+sudo apt install unattended-upgrades -y;
+sudo dpkg-reconfigure --priority=low unattended-upgrades;
+systemctl status unattended-upgrades
 ```
 
-## 4. Security Baseline Verification
+![Unattended upgrades active status](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-2.png)
 
-I ran the [`security-baseline.sh`](https://raw.githubusercontent.com/Z23599848/OS-coursework/refs/heads/main/scripts/security-baseline.sh) script to verify all controls.
+**Operational Benefit:** This significantly reduces exposure windows for known vulnerabilities while maintaining system stability.
+
+---
+
+### 2.3 Intrusion Detection – Fail2Ban
+
+Fail2Ban was deployed to actively monitor authentication logs and dynamically block sources exhibiting malicious behaviour.
+
+**Enforcement Policy:**
+
+* Trigger: 5 failed SSH login attempts within 10 minutes
+* Response: Temporary IP ban (1 hour)
+* Configuration persistence via `jail.local`
+
+### Command Execution (grouped)
+
 ```bash
-admin@server-vm:~$ sudo ./security-baseline.sh
-Starting Security Baseline Verification...
-----------------------------------------
-Checking SSH Configuration... [PASS]
-Checking Firewall (UFW) Status... [PASS]
-Checking for Non-Root Admin User... [PASS]
-Checking Unattended Upgrades... [PASS]
-Checking Fail2Ban Status... [PASS]
-----------------------------------------
-Verification Complete.
+sudo apt install fail2ban -y;
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local;
+sudo systemctl restart fail2ban;
+sudo fail2ban-client status sshd
 ```
-## 5. Remote Monitoring Script 
-A remote monitoring script [`monitor-server.sh`](https://raw.githubusercontent.com/Z23599848/OS-coursework/refs/heads/main/scripts/monitor-server.sh) that runs on your workstation,
-connects via SSH, and collects performance metrics from the server.
 
-[← Week 4](week4.md) | [Home](https://github.com/Z23599848/OS-coursework/blob/main/README.md) | [Week 6 →](week6.md)
+![Fail2Ban SSH jail status](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-3.png)
+
+**Security Impact:** Automated banning reduces brute-force attack effectiveness and log noise.
+
+---
+
+## 3. Automation and Monitoring
+
+### 3.1 Security Baseline Verification Script (`security-baseline.sh`)
+
+A server-side Bash script was created to validate the continued presence of critical security controls introduced in Weeks 4 and 5. This script acts as a lightweight compliance check and supports configuration drift detection.
+
+### Script Deployment and Execution
+
+```bash
+nano ~/security-baseline.sh;
+chmod +x ~/security-baseline.sh;
+./security-baseline.sh
+```
+
+![Security baseline script execution](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-4.png)
+
+**Value:** Security checks become repeatable, fast, and less prone to human error.
+
+---
+
+### 3.2 Remote Monitoring Script (`monitor-server.sh`)
+
+A client-side monitoring script was developed to collect essential performance metrics via SSH, enabling visibility into server health without maintaining an active terminal session.
+
+### Script Execution
+
+```bash
+nano ./monitor-server.sh;
+chmod +x ./monitor-server.sh;
+./monitor-server.sh
+```
+
+![Remote monitoring script output](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-5.png)
+
+
+**Operational Benefit:** This approach supports scalable monitoring and forms the foundation for future automation or alerting.
+
+---
+
+## 4. Reflection and Key Takeaways
+
+Developing automated verification and monitoring reinforced the importance of treating infrastructure as code. Instead of relying on manual checks, the system can now self-report deviations from its intended security state. This significantly improves reliability and highlights how automation reduces both operational overhead and configuration drift risk.
+
+---
+
+[← Previous: Week 4](./week4.md) | [Return to Home](./index.md) | [Next: Week 6 →](./week6.md)
