@@ -21,6 +21,7 @@ sudo aa-status
 ```
 
 ![AppArmor status and enforced profiles](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-1.png)
+![AppArmor status and enforced profiles](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-2.png)
 
 **Security Impact:** Enforced AppArmor profiles provide containment at the application level, reducing lateral movement and post-exploitation impact.
 
@@ -43,7 +44,7 @@ sudo dpkg-reconfigure --priority=low unattended-upgrades;
 systemctl status unattended-upgrades
 ```
 
-![Unattended upgrades active status](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-2.png)
+![Unattended upgrades active status](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-3.png)
 
 **Operational Benefit:** This significantly reduces exposure windows for known vulnerabilities while maintaining system stability.
 
@@ -68,7 +69,7 @@ sudo systemctl restart fail2ban;
 sudo fail2ban-client status sshd
 ```
 
-![Fail2Ban SSH jail status](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-3.png)
+![Fail2Ban SSH jail status](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-4.png)
 
 **Security Impact:** Automated banning reduces brute-force attack effectiveness and log noise.
 
@@ -88,7 +89,7 @@ chmod +x ~/security-baseline.sh;
 ./security-baseline.sh
 ```
 
-![Security baseline script execution](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-4.png)
+![Security baseline script execution](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-5.png)
 
 **Value:** Security checks become repeatable, fast, and less prone to human error.
 
@@ -106,7 +107,7 @@ chmod +x ./monitor-server.sh;
 ./monitor-server.sh
 ```
 
-![Remote monitoring script output](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-5.png)
+![Remote monitoring script output](https://github.com/Z23599848/OS-coursework/blob/main/images/week5-6.png)
 
 
 **Operational Benefit:** This approach supports scalable monitoring and forms the foundation for future automation or alerting.
