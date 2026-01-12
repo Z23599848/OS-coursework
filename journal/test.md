@@ -162,7 +162,8 @@ uname -a; free -h; df -h; lsb_release -a; ip addr
 
 ![System verification output](https://github.com/Z23599848/OS-coursework/blob/main/images/BaselineSystemVerification_week1.png)
 ![System verification output](https://github.com/Z23599848/OS-coursework/blob/main/images/BaselineSystemVerification1_week1.png)
-<img width="847" height="83" alt="free -h" src="https://github.com/Z23599848/OS-coursework/blob/main/images/BaselineSystemVerification_week1.png" />
+![System verification output](https://raw.githubusercontent.com/Z23599848/OS-coursework/main/images/BaselineSystemVerification_week1.png)
+![System verification output](https://raw.githubusercontent.com/Z23599848/OS-coursework/main/images/BaselineSystemVerification1_week1.png)
 
 ---
 
