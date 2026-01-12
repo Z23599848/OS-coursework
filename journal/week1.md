@@ -160,8 +160,9 @@ Initial system verification confirms correct installation and network configurat
 uname -a; free -h; df -h; lsb_release -a; ip addr
 ```
 
-<img alt="System verification output" src="https://raw.githubusercontent.com/Z23599848/OS-coursework/main/images/BaselineSystemVerification_week1.png" />
-<img alt="System verification output" src="https://raw.githubusercontent.com/Z23599848/OS-coursework/main/images/BaselineSystemVerification1_week1.png" />
+<img src="../images/BaselineSystemVerification_week1.png" alt="System verification output" />
+<img src="../images/BaselineSystemVerification1_week1.png" alt="System verification output" />
+
 
 
 ---
