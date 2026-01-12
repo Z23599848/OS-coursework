@@ -20,7 +20,7 @@ This journal documents the 7-week journey of configuring, securing, and evaluati
 ## Key Achievements
 - **Security:** Achieved a Lynis hardening index of >65.
 - **Automation:** Developed scripts for security verification and remote monitoring.
-- **Performance:** Optimized server resource usage by 15% through kernel tuning.
+- **Performance:** Optimized server resource usage by 5% through kernel tuning.
 
 ---
 *This journal is submitted in partial fulfillment of the requirements for the CMPN202 Operating Systems module.*
