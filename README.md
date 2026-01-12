@@ -18,7 +18,7 @@ This journal documents the 7-week journey of configuring, securing, and evaluati
 - [Week 7: Security Audit and System Evaluation](./journal/week7.md)
 
 ## Key Achievements
-- **Security:** Achieved a Lynis hardening index of >80.
+- **Security:** Achieved a Lynis hardening index of >65.
 - **Automation:** Developed scripts for security verification and remote monitoring.
 - **Performance:** Optimized server resource usage by 15% through kernel tuning.
 
